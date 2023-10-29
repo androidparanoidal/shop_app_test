@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'models/items_list_model.dart';
+import 'models/product_model.dart';
 import 'repository_main.dart';
 
 class ShopAppRepository implements AbstractShopRepository {
@@ -30,12 +32,11 @@ class ShopAppRepository implements AbstractShopRepository {
   }
 
   @override
-  Future<AData> getItemDetail() async {
-    // (int id)
+  Future<AData> getItemDetail(int id) async {
     final queryParameters = {
       'shop': '2',
       'lang': '1',
-      'id': '46235' //id, //46235
+      'id': '$id', //46190
     };
 
     final uri = Uri.https(
@@ -44,10 +45,8 @@ class ShopAppRepository implements AbstractShopRepository {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      final productInfo = data['api_data']; //aData
-      print(productInfo);
+      final productInfo = data['api_data']['aData']; //aData
       AData productDetail = AData.fromJson(productInfo);
-      print(productDetail);
       return productDetail;
     } else {
       throw Exception('Error: ${response.statusCode}');

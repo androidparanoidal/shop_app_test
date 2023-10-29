@@ -7,9 +7,7 @@ part of 'product_model.dart';
 // **************************************************************************
 
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(
-      aData: json['aData'] == null
-          ? null
-          : AData.fromJson(json['aData'] as Map<String, dynamic>),
+      aData: AData.fromJson(json['aData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -17,49 +15,47 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
     };
 
 AData _$ADataFromJson(Map<String, dynamic> json) => AData(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
-      price: json['price'] as int?,
-      photo: (json['photo'] as List<dynamic>?)
-          ?.map((e) => BigPhoto.fromJson(e as Map<String, dynamic>))
+      id: json['id'] as int,
+      name: json['name'] as String,
+      price: json['price'] as int,
+      photos: (json['photos'] as List<dynamic>)
+          .map((e) => Photo.fromJson(e as Map<String, dynamic>))
           .toList(),
-      description: json['description'] == null
-          ? null
-          : Descriptions.fromJson(json['description'] as Map<String, dynamic>),
+      descriptions:
+          Descriptions.fromJson(json['descriptions'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ADataToJson(AData instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'price': instance.price,
-      'photo': instance.photo,
-      'description': instance.description,
+      'photos': instance.photos,
+      'descriptions': instance.descriptions,
     };
 
-BigPhoto _$BigPhotoFromJson(Map<String, dynamic> json) => BigPhoto(
-      basicColors: json['basicColors'] == null
-          ? null
-          : BasicColors.fromJson(json['basicColors'] as Map<String, dynamic>),
-      big: json['big'] as String?,
+Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
+      basicColor:
+          BasicColor.fromJson(json['basicColor'] as Map<String, dynamic>),
+      big: json['big'] as String,
     );
 
-Map<String, dynamic> _$BigPhotoToJson(BigPhoto instance) => <String, dynamic>{
-      'basicColors': instance.basicColors,
+Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
+      'basicColor': instance.basicColor,
       'big': instance.big,
     };
 
-BasicColors _$BasicColorsFromJson(Map<String, dynamic> json) => BasicColors(
+BasicColor _$BasicColorFromJson(Map<String, dynamic> json) => BasicColor(
       colors:
-          (json['colors'] as List<dynamic>?)?.map((e) => e as String).toList(),
+          (json['colors'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$BasicColorsToJson(BasicColors instance) =>
+Map<String, dynamic> _$BasicColorToJson(BasicColor instance) =>
     <String, dynamic>{
       'colors': instance.colors,
     };
 
 Descriptions _$DescriptionsFromJson(Map<String, dynamic> json) => Descriptions(
-      text: json['text'] as String?,
+      text: json['text'] as String,
     );
 
 Map<String, dynamic> _$DescriptionsToJson(Descriptions instance) =>

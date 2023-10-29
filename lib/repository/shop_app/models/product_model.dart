@@ -4,8 +4,8 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class Product {
-  Product({this.aData});
-  AData? aData;
+  Product({required this.aData});
+  final AData aData;
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
@@ -16,17 +16,17 @@ class Product {
 @JsonSerializable()
 class AData {
   AData({
-    this.id,
-    this.name,
-    this.price,
-    this.photo,
-    this.description,
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.photos,
+    required this.descriptions,
   });
-  int? id;
-  String? name;
-  int? price;
-  List<BigPhoto>? photo;
-  Descriptions? description;
+  final int id;
+  final String name;
+  final int price;
+  final List<Photo> photos;
+  final Descriptions descriptions;
 
   factory AData.fromJson(Map<String, dynamic> json) => _$ADataFromJson(json);
 
@@ -34,42 +34,41 @@ class AData {
 }
 
 @JsonSerializable()
-class BigPhoto {
-  BigPhoto({
-    this.basicColors,
-    this.big,
+class Photo {
+  Photo({
+    required this.basicColor,
+    required this.big,
   });
 
-  BasicColors? basicColors;
-  String? big;
+  final BasicColor basicColor;
+  final String big;
 
-  factory BigPhoto.fromJson(Map<String, dynamic> json) =>
-      _$BigPhotoFromJson(json);
+  factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BigPhotoToJson(this);
+  Map<String, dynamic> toJson() => _$PhotoToJson(this);
 }
 
 @JsonSerializable()
-class BasicColors {
-  BasicColors({
-    this.colors,
+class BasicColor {
+  BasicColor({
+    required this.colors,
   });
 
-  List<String>? colors;
+  final List<String> colors;
 
-  factory BasicColors.fromJson(Map<String, dynamic> json) =>
-      _$BasicColorsFromJson(json);
+  factory BasicColor.fromJson(Map<String, dynamic> json) =>
+      _$BasicColorFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BasicColorsToJson(this);
+  Map<String, dynamic> toJson() => _$BasicColorToJson(this);
 }
 
 @JsonSerializable()
 class Descriptions {
   Descriptions({
-    this.text,
+    required this.text,
   });
 
-  String? text;
+  final String text;
 
   factory Descriptions.fromJson(Map<String, dynamic> json) =>
       _$DescriptionsFromJson(json);

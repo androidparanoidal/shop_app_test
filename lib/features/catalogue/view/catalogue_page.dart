@@ -5,9 +5,10 @@ import 'package:get_it/get_it.dart';
 import 'package:shop_test/features/catalogue/bloc/items_list_bloc.dart';
 import 'package:shop_test/repository/shop_app/abstract_shop_repository.dart';
 import 'package:shop_test/theme/app_colors.dart';
+import 'package:auto_route/auto_route.dart';
+import '../../../router/router.dart';
 
-import '../../../repository/shop_app/shop_app_repository.dart';
-
+@RoutePage()
 class CataloguePage extends StatefulWidget {
   const CataloguePage({Key? key}) : super(key: key);
 
@@ -101,8 +102,8 @@ class _CataloguePageState extends State<CataloguePage> {
                       final productId = state.itemsList.aProduct[index].id;
                       return GestureDetector(
                         onTap: () {
-                          Navigator.of(context)
-                              .pushNamed('/product', arguments: productId);
+                          AutoRouter.of(context)
+                              .push(ProductDetailRoute(id: productId));
                         },
                         child: Column(
                           children: [

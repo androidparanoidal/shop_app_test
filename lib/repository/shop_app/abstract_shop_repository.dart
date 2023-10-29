@@ -1,6 +1,7 @@
-import 'package:shop_test/repository/shop_app/models/models.dart';
+import 'models/items_list_model.dart';
+import 'models/product_model.dart';
 
 abstract class AbstractShopRepository {
   Future<ItemsList> getItemsList();
-  Future<AData> getItemDetail();
+  Future<AData> getItemDetail(int id);
 }
