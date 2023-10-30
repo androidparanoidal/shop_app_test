@@ -14,7 +14,7 @@ class ItemsListBloc extends Bloc<ItemsListEvent, ItemsListState> {
         if (state is! ItemsListLoaded) {
           emit(ItemsListLoading());
         }
-        final itemsList = await shopRepository.getItemsList();
+        final itemsList = await shopRepository.getItemsList(event.category);
         emit(ItemsListLoaded(itemsList));
       } catch (e) {
         emit(ItemsListLoadingFailure(e));

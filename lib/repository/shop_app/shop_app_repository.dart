@@ -9,11 +9,11 @@ class ShopAppRepository implements AbstractShopRepository {
   final http.Client client;
 
   @override
-  Future<ItemsList> getItemsList() async {
+  Future<ItemsList> getItemsList(String category) async {
     final queryParameters = {
       'shop': '2',
       'lang': '1',
-      'category': 'dresses', // new dresses shoes last
+      'category': category, // new dresses shoes last
       'limit': '12',
       'page': '1'
     };
