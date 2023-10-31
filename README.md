@@ -6,6 +6,8 @@ Routing: auto_route \
 DI: get_it \
 Splash screen: flutter_native_splash \
 
+В приложении можно менять тему (только ее нужно подкорректировать), загружать 4 категории вещей
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
