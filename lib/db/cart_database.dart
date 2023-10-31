@@ -7,7 +7,7 @@ class CartDatabaseProvider {
   static final CartDatabaseProvider db = CartDatabaseProvider._();
 
   static late Database _database;
-  String itemsTable = 'ItemsCart';
+  String tableName = 'ItemsCart';
   String columnId = 'id';
   String itemData = 'itemData';
 
@@ -24,7 +24,7 @@ class CartDatabaseProvider {
 
   void _createDB(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE $itemsTable($columnId TEXT PRIMARY KEY, $itemData TEXT)',
+      'CREATE TABLE $tableName($columnId TEXT PRIMARY KEY, $itemData TEXT)',
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../../../repository/shop_app/abstract_shop_repository.dart';
+import '../../../router/router.dart';
 import '../../../theme/app_colors.dart';
 import '../bloc/product_detail_bloc.dart';
 import 'package:auto_route/auto_route.dart';
@@ -33,14 +34,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
         actions: [
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                AutoRouter.of(context).push(CartRoute());
+              },
               child: Container(
                 width: 78,
                 height: 45,
@@ -75,6 +75,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           builder: (context, state) {
             if (state is ProductDetailLoaded) {
               final item = state.item;
+              final productId = item.id;
               return ListView(
                 children: [
                   Image.network(item.photos[0].big),
@@ -93,7 +94,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      AutoRouter.of(context).push(AlertRoute(id: productId));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Container(
