@@ -1,10 +1,10 @@
 # shop_test
 
-State management: bloc + equatable and provider for changing the theme
-Working with the network: http + json_serializable
-Routing: auto_route
-DI: get_it
-Splash screen: flutter_native_splash
+State management: bloc + equatable and provider for changing the theme \
+Working with the network: http + json_serializable \
+Routing: auto_route \
+DI: get_it \
+Splash screen: flutter_native_splash \
 
 ## Getting Started
 
