@@ -15,7 +15,7 @@ class CartPage extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: 2,
               itemBuilder: (context, index) {
                 return const ProductCard();
               },
