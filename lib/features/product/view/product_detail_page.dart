@@ -84,12 +84,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Text(
                       item.name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(fontSize: 15),
                       textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     '${item.price} руб.',
+                    style: Theme.of(context).textTheme.titleSmall,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
@@ -102,15 +107,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       child: Container(
                         height: 65,
                         decoration: BoxDecoration(
-                            color: AppColors.darkColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(50)),
-                        child: const Center(
+                        child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 'Добавить в корзину',
-                                style: TextStyle(color: Colors.white),
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
                           ),

@@ -43,6 +43,7 @@ class _AlertScreenState extends State<AlertScreen> {
               final item = state.item;
               return Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const SizedBox(height: 20),
                     const Text('Добавлено в корзину'),
@@ -56,9 +57,10 @@ class _AlertScreenState extends State<AlertScreen> {
                         height: 150,
                       ),
                     ),
-                    Text(item.name),
-                    const SizedBox(height: 10),
+                    Text(item.name,
+                        style: Theme.of(context).textTheme.bodyMedium),
                     const Text('Размер XS'),
+                    const SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {
                         AutoRouter.of(context).push(CartRoute());
@@ -68,15 +70,15 @@ class _AlertScreenState extends State<AlertScreen> {
                         child: Container(
                           height: 65,
                           decoration: BoxDecoration(
-                              color: AppColors.darkColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(50)),
-                          child: const Center(
+                          child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Перейти в корзину',
-                                  style: TextStyle(color: Colors.white),
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                               ],
                             ),
@@ -88,9 +90,9 @@ class _AlertScreenState extends State<AlertScreen> {
                       onPressed: () {
                         context.router.pop();
                       },
-                      child: const Text(
+                      child: Text(
                         'Закрыть',
-                        style: TextStyle(color: Colors.black),
+                        style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ),
                   ],

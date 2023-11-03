@@ -87,16 +87,13 @@ class _CataloguePageState extends State<CataloguePage> {
             if (state is ItemsListLoaded) {
               return ListView(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 20, bottom: 20, left: 10, right: 10),
                     child: Text(
-                      'Каждый день тысячи девушек распаковывают пакеты \nс новинками Lichi и становятся счастливее, ведь \nочевидно, что новое платье может \nизменить день, а с ним и всю жизнь!',
+                      'Каждый день тысячи девушек распаковывают пакеты с новинками Lichi и становятся счастливее, ведь очевидно, что новое платье может изменить день, а с ним и всю жизнь!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'OpenSans_Light',
-                        fontSize: 13,
-                        color: AppColors.darkColor,
-                      ),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -108,7 +105,7 @@ class _CataloguePageState extends State<CataloguePage> {
                         icon: const Icon(CupertinoIcons.moon_fill),
                         onTapMethod: () {
                           Provider.of<ThemeProvider>(context, listen: false)
-                              .toggleTheme();
+                              .turnDarkTheme();
                         },
                       ),
                       const SizedBox(width: 10),
@@ -117,7 +114,7 @@ class _CataloguePageState extends State<CataloguePage> {
                         icon: const Icon(Icons.sunny),
                         onTapMethod: () {
                           Provider.of<ThemeProvider>(context, listen: false)
-                              .toggleTheme();
+                              .turnLightTheme();
                         },
                       ),
                     ],
@@ -128,11 +125,7 @@ class _CataloguePageState extends State<CataloguePage> {
                       child: DropdownButton(
                         value: dropdownValue,
                         icon: const Icon(Icons.expand_more),
-                        style: const TextStyle(
-                          fontSize: 13,
-                          color: AppColors.darkColor,
-                          fontFamily: 'OpenSans_Regular',
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium,
                         items: items.map((String items) {
                           return DropdownMenuItem(
                             value: items,
@@ -154,7 +147,7 @@ class _CataloguePageState extends State<CataloguePage> {
                     shrinkWrap: true,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.5,
+                      childAspectRatio: 0.48,
                       crossAxisCount: 2,
                     ),
                     physics: const NeverScrollableScrollPhysics(),
@@ -162,7 +155,7 @@ class _CataloguePageState extends State<CataloguePage> {
                     itemBuilder: (context, index) {
                       final productId = state.itemsList.aProduct[index].id;
                       return Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(3.0),
                         child: GestureDetector(
                           onTap: () {
                             AutoRouter.of(context)
@@ -170,17 +163,25 @@ class _CataloguePageState extends State<CataloguePage> {
                           },
                           child: Column(
                             children: [
-                              Image.network(state
-                                  .itemsList.aProduct[index].photos[0].big),
-                              Text(
-                                  '${state.itemsList.aProduct[index].price} руб.'),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.network(state
+                                    .itemsList.aProduct[index].photos[0].big),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Text(
+                                    '${state.itemsList.aProduct[index].price} руб.',
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall),
+                              ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
+                                    const EdgeInsets.symmetric(horizontal: 3),
                                 child: Text(
                                   state.itemsList.aProduct[index].name,
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 13),
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                               //colors
@@ -196,23 +197,41 @@ class _CataloguePageState extends State<CataloguePage> {
             if (state is ItemsListLoadingFailure) {
               return Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Text(
-                      'Товары в данной категории отсутствуют,пожалуйста, выберите другую :(',
+                    const SizedBox(height: 30),
+                    Text(
+                      'Произошла ошибка, пожалуйста повторите позднее',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'OpenSans_Light',
-                        fontSize: 13,
-                        color: AppColors.darkColor,
-                      ),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
-                    const SizedBox(height: 40),
-                    TextButton(
-                      onPressed: () {
+                    const SizedBox(height: 30),
+                    GestureDetector(
+                      onTap: () {
                         _itemsListBloc.add(LoadItemsList(
                             category: dropdownValue.toLowerCase()));
                       },
-                      child: const Text('Повторить'),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Container(
+                          height: 65,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.background,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Повторить',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

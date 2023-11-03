@@ -21,7 +21,7 @@ class ThemeButton extends StatelessWidget {
         width: 170,
         height: 86,
         decoration: BoxDecoration(
-            color: AppColors.lightColor,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(20)),
         child: Center(
           child: Row(
@@ -29,7 +29,7 @@ class ThemeButton extends StatelessWidget {
             children: [
               icon,
               const SizedBox(width: 15),
-              Text(title),
+              Text(title, style: Theme.of(context).textTheme.labelMedium),
             ],
           ),
         ),

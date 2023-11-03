@@ -48,3 +48,7 @@ flutter:
     - family: OpenSans_Light
       fonts:
         - asset: fonts/OpenSans_Light.ttf
+
+    - family: OpenSans_SemiBold
+      fonts:
+        - asset: fonts/OpenSans_SemiBold.ttf

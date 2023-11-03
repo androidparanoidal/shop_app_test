@@ -4,7 +4,7 @@ State management: bloc + equatable and provider for changing the theme \
 Working with the network: http + json_serializable \
 Routing: auto_route \
 DI: get_it \
-Splash screen: flutter_native_splash \
+Splash screen: flutter_native_splash 
 
 В приложении можно менять тему (только ее нужно подкорректировать), загружать 4 категории вещей
 
